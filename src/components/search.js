@@ -15,12 +15,12 @@ class Search extends Component {
              value={this.props.userVal}
             />
             <span className="input-group-btn">
-			         <button type="submit" className="btn btn-secondary">Submit</button>
+			       <button type="submit" className="btn btn-secondary">Submit</button>
 			      </span>
           </form>
          </div>
        );
    }
-}
+ }
 
 export default Search;
