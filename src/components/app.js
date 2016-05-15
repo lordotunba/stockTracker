@@ -22,37 +22,25 @@ export default class App extends Component {
          .then((response) => {
            let respData = response.data.results.data.quoteInfo.quotes.quote;
            this.setState({stocks:this.state.stocks.concat([respData])});
-           this.handleRenderStocks();
          });
   }
 
 handleFetchStocks(e){
   e.preventDefault();
-  console.log(this.state.userVal);
   this.makeApiCall(this.state.userVal);
   this.setState({userVal:''});
 
 }
 
-handleRenderStocks(){
-   return this.state.stocks.map((stock,key) => {
-             console.log(stock,key);
-             return(
-                <StockLists
-                 key={key}
-                 showStocks={stock}
-                />
-             )
-   });
-}
 
 handleInputChange(e){
   this.setState({userVal:e.target.value});
 }
 
-handleStock (selectedStock){
+getSelectedStock(selectedStock){
   this.setState({selectedStock});
-  this.state.stocks[selectedStock];
+  console.log(this.state.selectedStock);
+  //this.state.stocks[selectedStock];
 }
 
   render() {
@@ -63,7 +51,7 @@ handleStock (selectedStock){
            fetchStocks={this.handleFetchStocks.bind(this)}
            updateInput={this.handleInputChange.bind(this)}
            />
-         <StockLists stocks={this.state.stocks} selectedStock = {this.handleStock.bind(this)}/>
+         <StockLists stocks={this.state.stocks} selectedStock = {this.getSelectedStock.bind(this)}/>
         </div>
     );
   }
