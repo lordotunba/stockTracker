@@ -6,7 +6,7 @@ const StockList = ({stock,onStockSelect}) => {
              <li onClick={() => onStockSelect(stock)}>
                <div className="">{stock.symbol}</div>
                <div className="">{stock.last} </div>
-               <div className="">{stock.pctChange}% </div>
+               <div className={stock.isStockHigh ? 'green': 'red'}> {stock.isStockHigh ? '+' :''} {stock.pctChange}% </div>
             </li>
             );
 }

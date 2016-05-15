@@ -13,15 +13,19 @@ let userCred = '&userLoginId=phvuser33@nuance.com&userPassword=Tweddle2';
 export default class App extends Component {
   constructor(props){
     super(props);
-    this.state = {userVal:'', stocks:[],selectedStock:null};
+    this.state = {
+             userVal:'',
+             stocks:[],
+             selectedStock:null
+           };
   }
 
   makeApiCall(stocks){
    let stockUrl = `${url}${partnerId}${userCred}&symbols=${stocks}`;
     axios.get(stockUrl)
          .then((response) => {
-           let respData = response.data.results.data.quoteInfo.quotes.quote;
-           this.setState({stocks:this.state.stocks.concat([respData])});
+           const respData = response.data.results.data.quoteInfo.quotes.quote;
+           this.setStockObj(respData);
          });
   }
 
@@ -32,6 +36,16 @@ handleFetchStocks(e){
 
 }
 
+setStockObj(respData){
+  if(respData['pctChange'] < 0){
+     respData['isStockHigh'] = false;
+  }
+  else{
+    respData['isStockHigh'] = true;
+  }
+  this.setState({stocks:this.state.stocks.concat([respData])});
+}
+
 
 handleInputChange(e){
   this.setState({userVal:e.target.value});
@@ -39,8 +53,7 @@ handleInputChange(e){
 
 getSelectedStock(selectedStock){
   this.setState({selectedStock});
-  console.log(this.state.selectedStock);
-  //this.state.stocks[selectedStock];
+
 }
 
   render() {
@@ -51,7 +64,10 @@ getSelectedStock(selectedStock){
            fetchStocks={this.handleFetchStocks.bind(this)}
            updateInput={this.handleInputChange.bind(this)}
            />
-         <StockLists stocks={this.state.stocks} selectedStock = {this.getSelectedStock.bind(this)}/>
+         <StockLists
+           stocks={this.state.stocks}
+           selectedStock = {this.getSelectedStock.bind(this)}
+          />
         </div>
     );
   }
