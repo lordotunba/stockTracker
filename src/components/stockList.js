@@ -1,12 +1,14 @@
-import React,{Component} from 'react';
+import React from 'react';
 
 
-
-class StockList extends Component {
-
-   render(){
-       return (<div>StockList here </div>);
-   }
+const StockList = ({stock,onStockSelect}) => {
+    return (
+             <li onClick={() => onStockSelect(stock)}>
+               <div className="">{stock.name} - ({stock.symbol}) </div>
+               <div className="">Value: {stock.last} </div>
+               <div className=""> % :  {stock.pctChange} </div>
+            </li>
+            );
 }
 
 export default StockList;
