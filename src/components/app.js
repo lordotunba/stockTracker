@@ -2,7 +2,9 @@ import React from 'react';
 import { Component } from 'react';
 import Search from './search';
 import axios from 'axios';
+import StockChart from './StockChart';
 import StockLists from './stockLists';
+
 
 let url = 'https://dcs-qa-services.tweddletech.com/api-1.0/stocks?command=getQuotes&output=json';
 let partnerId ='&partnerId=4de68703-5fe3-4477-8d18-0a63b452d534';
@@ -44,16 +46,18 @@ setStockObj(respData){
     respData['isStockHigh'] = true;
   }
   this.setState({stocks:this.state.stocks.concat([respData])});
+  this.setState({selectedStock:this.state.stocks[0]});
+  console.log('rere',this.state.selectedStock);
 }
-
-
+//<StockChart stock={this.state.selectedStock}/>
+//{props.stocks.length == 0 ? '': <StockChart stock={props.stocks[0]}/>}
 handleInputChange(e){
   this.setState({userVal:e.target.value});
 }
 
 getSelectedStock(selectedStock){
   this.setState({selectedStock});
-
+  <StockChart stock={this.state.selectedStock}/>
 }
 
   render() {
@@ -64,10 +68,12 @@ getSelectedStock(selectedStock){
            fetchStocks={this.handleFetchStocks.bind(this)}
            updateInput={this.handleInputChange.bind(this)}
            />
+
          <StockLists
            stocks={this.state.stocks}
            selectedStock = {this.getSelectedStock.bind(this)}
           />
+          <StockChart stock={this.state.selectedStock}/>
         </div>
     );
   }
