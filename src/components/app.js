@@ -1,9 +1,9 @@
-import React from 'react';
-import { Component } from 'react';
-import Search from './search';
+import React, {Component} from 'react';
 import axios from 'axios';
-import StockChart from './StockChart';
+import Search from './search';
 import StockLists from './stockLists';
+import StockChart from './StockChart';
+import {Sparklines} from 'react-sparklines';
 
 
 let url = 'https://dcs-qa-services.tweddletech.com/api-1.0/stocks?command=getQuotes&output=json';
@@ -13,6 +13,7 @@ let userCred = '&userLoginId=phvuser33@nuance.com&userPassword=Tweddle2';
 
 
 export default class App extends Component {
+
   constructor(props){
     super(props);
     this.state = {
@@ -20,6 +21,7 @@ export default class App extends Component {
              stocks:[],
              selectedStock:null
            };
+           console.log('search data',Sparklines);
   }
 
   makeApiCall(stocks){
@@ -38,6 +40,7 @@ handleFetchStocks(e){
 
 }
 
+
 setStockObj(respData){
   if(respData['pctChange'] < 0){
      respData['isStockHigh'] = false;
@@ -46,7 +49,7 @@ setStockObj(respData){
     respData['isStockHigh'] = true;
   }
   this.setState({stocks:this.state.stocks.concat([respData])});
-  this.setState({selectedStock:this.state.stocks[0]});
+
   console.log('rere',this.state.selectedStock);
 }
 //<StockChart stock={this.state.selectedStock}/>
@@ -59,6 +62,7 @@ getSelectedStock(selectedStock){
   this.setState({selectedStock});
   <StockChart stock={this.state.selectedStock}/>
 }
+
 
   render() {
     return (
@@ -73,7 +77,7 @@ getSelectedStock(selectedStock){
            stocks={this.state.stocks}
            selectedStock = {this.getSelectedStock.bind(this)}
           />
-          <StockChart stock={this.state.selectedStock}/>
+          {this.state.selectedStock == null ? '': <StockChart stock={this.state.selectedStock}/>}
         </div>
     );
   }

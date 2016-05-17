@@ -1,18 +1,17 @@
 import React,{Component} from 'react';
 
 
-class Search extends Component {
-   render(){
+export  default (props) => {
        return (
          <div>
          <h3> Stock Tracker App </h3>
-         <form onSubmit={this.props.fetchStocks} className="input-group">
+         <form onSubmit={props.fetchStocks} className="input-group">
            <input
              type="search"
              className="input-group"
-             onChange={this.props.updateInput}
+             onChange={props.updateInput}
              placeholder="Enter multiple stocks symbol here"
-             value={this.props.userVal}
+             value={props.userVal}
             />
             <span className="input-group-btn">
 			       <button type="submit" className="btn btn-secondary">Submit</button>
@@ -21,6 +20,3 @@ class Search extends Component {
          </div>
        );
    }
- }
-
-export default Search;

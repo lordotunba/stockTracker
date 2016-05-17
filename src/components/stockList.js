@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const StockList = ({stock,onStockSelect}) => {
+export default ({stock,onStockSelect}) => {
     return (
              <li onClick={() => onStockSelect(stock)}>
                <div className="">{stock.symbol}</div>
@@ -10,5 +10,3 @@ const StockList = ({stock,onStockSelect}) => {
             </li>
             );
 }
-
-export default StockList;

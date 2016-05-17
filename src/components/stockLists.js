@@ -1,8 +1,7 @@
 import React from 'react';
 import StockList from './stockList';
 
-const StockLists = (props) => {
-
+export default (props) => {
 const handleRenderStocks = props.stocks.map((stock,key) => {
             return(
                     <StockList
@@ -20,5 +19,3 @@ const handleRenderStocks = props.stocks.map((stock,key) => {
     );
 
 }
-
-export default StockLists;

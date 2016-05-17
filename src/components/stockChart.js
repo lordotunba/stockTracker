@@ -1,15 +1,14 @@
 import React from 'react';
-import {SparkLines,SparklinesLine} from 'react-sparklines';
+import {Sparklines,SparklinesLine} from 'react-sparklines';
 
-const StockChart = (props) => {
-    const stock = props.stock;
-    console.log(stock);
+export default (props) => {
+   const stock = props.stock;
+   console.log(stock);
     if(!stock){
-      return( <div>Loading... </div>);
+      return( <div>No Stocks to show </div>);
     }
     else{
         return(
-          <div>
           <div>
            <section className="col-sm-6">
              <h3>{stock.symbol}</h3>
@@ -19,17 +18,12 @@ const StockChart = (props) => {
                <small> {stock.change} </small>
              </span>
            </section>
-           </div>
-           <div>
-           <SparkLines data={[5, 10, 5, 20]}>
-             <SparklinesLine color="green" />
-           </SparkLines>
-         </div>
+
+           <Sparklines data={[4,23,24,55]}>
+              <SparklinesLine color="blue" />
+          </Sparklines>
          </div>
         )
     }
 
-
-}
-
-export default StockChart;
+  }
