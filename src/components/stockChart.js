@@ -1,5 +1,5 @@
 import React from 'react';
-import {Sparklines,SparklinesLine} from 'react-sparklines';
+import {Sparklines,SparklinesLine,SparklinesSpots} from 'react-sparklines';
 
 export default (props) => {
    const stock = props.stock;
@@ -19,8 +19,9 @@ export default (props) => {
              </span>
            </section>
 
-           <Sparklines data={[4,23,24,55]}>
-              <SparklinesLine color="blue" />
+           <Sparklines data={[stock.high,stock.prevClose,stock.open,stock.last]}>
+             <SparklinesLine style={{ stroke: "#2991c8", fill: "none"}} />
+             <SparklinesSpots />
           </Sparklines>
          </div>
         )

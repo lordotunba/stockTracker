@@ -21,7 +21,7 @@ export default class App extends Component {
              stocks:[],
              selectedStock:null
            };
-           console.log('search data',Sparklines);
+          
   }
 
   makeApiCall(stocks){
