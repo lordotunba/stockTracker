@@ -21,7 +21,7 @@ export default class App extends Component {
              stocks:[],
              selectedStock:null
            };
-          
+
   }
 
   makeApiCall(stocks){
@@ -66,18 +66,17 @@ getSelectedStock(selectedStock){
 
   render() {
     return (
-        <div>
+        <div className="row">
          <Search
            userVal={this.state.userVal}
            fetchStocks={this.handleFetchStocks.bind(this)}
            updateInput={this.handleInputChange.bind(this)}
            />
-
+          {this.state.selectedStock == null ? '': <StockChart stock={this.state.selectedStock}/>}
          <StockLists
            stocks={this.state.stocks}
            selectedStock = {this.getSelectedStock.bind(this)}
           />
-          {this.state.selectedStock == null ? '': <StockChart stock={this.state.selectedStock}/>}
         </div>
     );
   }

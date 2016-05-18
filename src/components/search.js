@@ -3,20 +3,22 @@ import React,{Component} from 'react';
 
 export  default (props) => {
        return (
-         <div>
-         <h3> Stock Tracker App </h3>
+         <div className="col-lg-12">
+         <h3 className="headerText"> Stock Tracker App </h3>
+         <div className="input-group">
          <form onSubmit={props.fetchStocks} className="input-group">
            <input
              type="search"
-             className="input-group"
+             className="form-control"
              onChange={props.updateInput}
-             placeholder="Enter multiple stocks symbol here"
+             placeholder="Enter stock symbol here"
              value={props.userVal}
             />
             <span className="input-group-btn">
-			       <button type="submit" className="btn btn-secondary">Submit</button>
+			       <button type="submit" className="btn btn-secondary">Search</button>
 			      </span>
           </form>
+          </div>
          </div>
        );
    }

@@ -9,20 +9,23 @@ export default (props) => {
     }
     else{
         return(
-          <div>
-           <section className="col-sm-6">
-             <h3>{stock.symbol}</h3>
-             <span className="pull-left">{stock.last}</span>
-             <span className="pull-right">
+          <div className="col-lg-8 wrapper">
+           <section className="col-lg-8 widget">
+             <h4 className="symbol">{stock.symbol}</h4>
+             <span className="stock-last">{stock.last}</span>
+             <span className="stock-pct">
                 {stock.isStockHigh ? '+' :''} {stock.pctChange}%
-               <small> {stock.change} </small>
+               <small className="stock-change"> {stock.change} </small>
              </span>
            </section>
-
-           <Sparklines data={[stock.high,stock.prevClose,stock.open,stock.last]}>
-             <SparklinesLine style={{ stroke: "#2991c8", fill: "none"}} />
-             <SparklinesSpots />
+           <span className="spark">
+           <Sparklines
+                width={400}
+                margin={50}
+                data={[stock.high,stock.low,stock.prevClose,stock.open,stock.last]}>
+              <SparklinesLine style={{ strokeWidth: 3, stroke: "#E083A1", fill: "none" }} />
           </Sparklines>
+          </span>
          </div>
         )
     }

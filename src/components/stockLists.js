@@ -13,7 +13,7 @@ const handleRenderStocks = props.stocks.map((stock,key) => {
   });
 
   return (
-        <ul className="col-md-4 list-group">
+        <ul className="col-lg-8 list-group">
             {handleRenderStocks}
         </ul>
     );
