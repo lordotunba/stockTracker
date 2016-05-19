@@ -11,7 +11,7 @@ export default (props) => {
         return(
           <div className="col-lg-8 wrapper">
            <section className="col-lg-8 widget">
-             <h4 className="symbol">{stock.symbol}</h4>
+             <h4 className="symbol">{stock.name} ({stock.symbol})</h4>
              <span className="stock-last">{stock.last}</span>
              <span className="stock-pct">
                 {stock.isStockHigh ? '+' :''} {stock.pctChange}%
@@ -23,7 +23,7 @@ export default (props) => {
                 width={400}
                 margin={50}
                 data={[stock.high,stock.low,stock.prevClose,stock.open,stock.last]}>
-              <SparklinesLine style={{ strokeWidth: 3, stroke: "#E083A1", fill: "none" }} />
+              <SparklinesLine style={{ strokeWidth: 2, stroke: "#04D3F6", fill: "rgba(74,226,252,0.5)" }} />
           </Sparklines>
           </span>
          </div>
