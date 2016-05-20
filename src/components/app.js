@@ -29,14 +29,18 @@ export default class App extends Component {
     axios.get(stockUrl)
          .then((response) => {
            const respData = response.data.results.data.quoteInfo.quotes.quote;
-           this.setStockObj(respData);
+           if(respData !== undefined)
+             this.setStockObj(respData);
          });
   }
 
 handleFetchStocks(e){
   e.preventDefault();
-  this.makeApiCall(this.state.userVal);
-  this.setState({userVal:''});
+  if(this.state.userVal !== ''){
+    this.makeApiCall(this.state.userVal);
+    this.setState({userVal:''});
+  }
+
 
 }
 
@@ -49,11 +53,8 @@ setStockObj(respData){
     respData['isStockHigh'] = true;
   }
   this.setState({stocks:this.state.stocks.concat([respData])});
-
-  console.log('rere',this.state.selectedStock);
 }
-//<StockChart stock={this.state.selectedStock}/>
-//{props.stocks.length == 0 ? '': <StockChart stock={props.stocks[0]}/>}
+
 handleInputChange(e){
   this.setState({userVal:e.target.value});
 }

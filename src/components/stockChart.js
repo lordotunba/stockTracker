@@ -3,11 +3,6 @@ import {Sparklines,SparklinesLine,SparklinesSpots} from 'react-sparklines';
 
 export default (props) => {
    const stock = props.stock;
-   console.log(stock);
-    if(!stock){
-      return( <div>No Stocks to show </div>);
-    }
-    else{
         return(
           <div className="col-lg-8 wrapper">
            <section className="col-lg-8 widget">
@@ -28,6 +23,5 @@ export default (props) => {
           </span>
          </div>
         )
-    }
 
   }

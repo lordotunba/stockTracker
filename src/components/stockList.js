@@ -8,8 +8,8 @@ export default ({stock,onStockSelect}) => {
              <li className="list-group-item" onClick={() => onStockSelect(stock)}>
                <span className={toggleClass}>
                 {stock.isStockHigh ? '+' :''}{stock.pctChange}%
-                </span>
-                {stock.symbol} {stock.last}
+               </span>
+               {stock.symbol} {stock.last}
             </li>
             );
 }
